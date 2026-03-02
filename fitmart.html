@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fit Mart – Premium Home Fitness Equipment</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===========================
+       CSS VARIABLES & RESET
+    =========================== */
+    :root {
+      --navy: #0F172A;
+      --orange: #F97316;
+      --green: #22C55E;
+      --bg: #F8FAFC;
+      --text: #111827;
+      --white: #FFFFFF;
+      --gray: #6B7280;
+      --light-gray: #E5E7EB;
+      --card-shadow: 0 4px 24px rgba(15,23,42,0.10);
+      --card-shadow-hover: 0 8px 40px rgba(249,115,22,0.18);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --transition: 0.28s cubic-bezier(.4,0,.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+    /* ===========================
+       HEADER
+    =========================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      padding: 0 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--orange);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .logo-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--orange); }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cod-badge {
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      animation: pulse-badge 2s infinite;
+    }
+    @keyframes pulse-badge {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+    .cart-btn {
+      position: relative;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .cart-btn:hover { background: var(--orange); border-color: var(--orange); }
+    .cart-count {
+      position: absolute;
+      top: -6px; right: -6px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 800;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--navy);
+      display: none;
+    }
+
+    /* ===========================
+       HERO SECTION
+    =========================== */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://i.ibb.co/JwbZsrVm/Gemeinsam-schwitzen-Partner-Workout-von-Fitness-Influencerin-Mad-Fit.jpg');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.45);
+      z-index: 0;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(249,115,22,0.18);
+      border: 1.5px solid rgba(249,115,22,0.5);
+      color: #FED7AA;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .hero-tag .dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: blink 1.2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero h1 {
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: #CBD5E1;
+      margin-bottom: 28px;
+      max-width: 540px;
+      line-height: 1.6;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 10px;
+    }
+    .hero-badge.green { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.5); color: #86EFAC; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 15px 32px;
+      border-radius: 12px;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(249,115,22,0.45);
+      letter-spacing: 0.2px;
+    }
+    .btn-primary:hover { background: #EA6A10; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249,115,22,0.5); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 15px 28px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      transition: all var(--transition);
+      backdrop-filter: blur(6px);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+
+    /* ===========================
+       TRUST BAR
+    =========================== */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .trust-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .trust-icon { font-size: 1.3rem; }
+    .trust-item .green { color: var(--green); }
+    .trust-divider { width: 1px; height: 28px; background: var(--light-gray); }
+
+    /* ===========================
+       SECTION STYLES
+    =========================== */
+    section { padding: 64px 20px; }
+    .section-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .section-label {
+      display: inline-block;
+      background: rgba(249,115,22,0.1);
+      color: var(--orange);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+    .section-header p {
+      color: var(--gray);
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    /* ===========================
+       PRODUCTS GRID
+    =========================== */
+    #products { background: var(--bg); }
+    .products-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    /* Trending Card */
+    .product-card.trending {
+      border: 2.5px solid var(--orange);
+      box-shadow: 0 0 0 0 rgba(249,115,22,0.3), var(--card-shadow);
+      animation: glow-card 2.5s ease-in-out infinite;
+    }
+    @keyframes glow-card {
+      0%,100% { box-shadow: 0 0 16px 2px rgba(249,115,22,0.18), var(--card-shadow); }
+      50% { box-shadow: 0 0 32px 6px rgba(249,115,22,0.32), var(--card-shadow); }
+    }
+
+    .product-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 72%;
+      overflow: hidden;
+      background: #F1F5F9;
+    }
+    .product-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+    /* Trending badge */
+    .trending-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: linear-gradient(90deg, #F97316, #EF4444);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 5px 11px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+      z-index: 2;
+      box-shadow: 0 2px 12px rgba(249,115,22,0.5);
+      animation: float-badge 2s ease-in-out infinite;
+    }
+    @keyframes float-badge {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    /* Best Seller ribbon */
+    .ribbon {
+      position: absolute;
+      top: 14px; right: -28px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 4px 34px;
+      transform: rotate(45deg);
+      letter-spacing: 0.5px;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(34,197,94,0.4);
+    }
+
+    .product-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-name {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 7px;
+      line-height: 1.4;
+    }
+    .product-desc {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .product-price-wrap { display: flex; flex-direction: column; gap: 2px; }
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .cod-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .add-to-cart {
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 10px;
+      transition: all var(--transition);
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(249,115,22,0.3);
+    }
+    .add-to-cart:hover { background: #EA6A10; transform: scale(1.04); }
+    .add-to-cart:active { transform: scale(0.97); }
+
+    /* ===========================
+       TESTIMONIALS
+    =========================== */
+    #testimonials { background: var(--white); }
+    .reviews-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: var(--card-shadow);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .review-card.visible { opacity: 1; transform: translateY(0); }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 14px;
+    }
+    .review-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--orange);
+      flex-shrink: 0;
+    }
+    .review-info { flex: 1; }
+    .review-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+    .review-stars { font-size: 0.85rem; margin-top: 2px; }
+    .review-msg {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .review-msg::before { content: '"'; font-size: 1.4rem; color: var(--orange); line-height: 0; vertical-align: -5px; margin-right: 2px; }
+    .review-msg::after { content: '"'; font-size: 1.4rem; color: var(--orange); line-height: 0; vertical-align: -5px; margin-left: 2px; }
+
+    /* ===========================
+       CART DRAWER
+    =========================== */
+    .cart-overlay {
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.55);
+      z-index: 200;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--transition);
+      backdrop-filter: blur(2px);
+    }
+    .cart-overlay.active { opacity: 1; pointer-events: all; }
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(420px, 100vw);
+      height: 100%;
+      background: var(--white);
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.18);
+    }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--light-gray);
+      background: var(--navy);
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .cart-header h2 { font-size: 1.1rem; font-weight: 800; }
+    .cart-close {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .cart-close:hover { background: rgba(255,255,255,0.25); }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cart-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray);
+    }
+    .cart-empty-icon { font-size: 3.5rem; margin-bottom: 12px; }
+    .cart-empty p { font-size: 1rem; font-weight: 600; }
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      animation: slide-in 0.25s ease;
+    }
+    @keyframes slide-in { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:none; } }
+    .cart-item-img {
+      width: 64px; height: 64px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin-bottom: 5px;
+    }
+    .cart-item-price { font-size: 0.88rem; color: var(--orange); font-weight: 700; }
+    .cart-item-controls {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 8px;
+    }
+    .qty-btn {
+      width: 28px; height: 28px;
+      border-radius: 7px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .qty-btn:hover { background: var(--orange); }
+    .qty-num { font-size: 0.9rem; font-weight: 700; min-width: 20px; text-align: center; }
+    .cart-item-remove {
+      background: #FEE2E2; color: #EF4444;
+      width: 28px; height: 28px;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .cart-item-remove:hover { background: #EF4444; color: var(--white); }
+    .cart-subtotal {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+    .cart-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--light-gray);
+      background: var(--white);
+      flex-shrink: 0;
+    }
+    .cart-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+    .cart-total-label { font-size: 0.95rem; font-weight: 600; color: var(--gray); }
+    .cart-total-amount { font-size: 1.4rem; font-weight: 900; color: var(--navy); }
+    .cod-notice {
+      background: rgba(34,197,94,0.1);
+      border: 1.5px solid rgba(34,197,94,0.3);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #15803D;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .checkout-btn {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(249,115,22,0.4);
+      transition: all var(--transition);
+      letter-spacing: 0.2px;
+    }
+    .checkout-btn:hover { background: #EA6A10; transform: translateY(-2px); }
+
+    /* ===========================
+       CHECKOUT MODAL
+    =========================== */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.65);
+      z-index: 300;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--transition);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      transform: scale(0.92);
+      transition: transform var(--transition);
+    }
+    .modal-overlay.active .modal { transform: scale(1); }
+    .modal-header {
+      padding: 22px 22px 18px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 20px 20px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h2 { font-size: 1.1rem; font-weight: 800; }
+    .modal-close {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.22); }
+    .modal-body { padding: 22px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+    .form-group label span { color: #EF4444; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--light-gray);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .order-summary-mini {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+    .order-summary-mini h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem;
+      padding: 4px 0;
+      border-bottom: 1px dashed var(--light-gray);
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-total-row {
+      display: flex; justify-content: space-between;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .place-order-btn {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(249,115,22,0.4);
+      transition: all var(--transition);
+    }
+    .place-order-btn:hover { background: #EA6A10; transform: translateY(-2px); }
+    .place-order-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Success */
+    .success-screen {
+      padding: 40px 22px;
+      text-align: center;
+      display: none;
+    }
+    .success-icon { font-size: 4rem; margin-bottom: 16px; }
+    .success-screen h2 { font-size: 1.3rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .success-screen p { font-size: 0.9rem; color: var(--gray); margin-bottom: 22px; line-height: 1.6; }
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 13px 24px;
+      border-radius: 12px;
+      transition: all var(--transition);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    }
+    .wa-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+    /* ===========================
+       FLOATING BUTTONS
+    =========================== */
+    .fab-cart {
+      position: fixed;
+      bottom: 24px; right: 20px;
+      z-index: 150;
+      background: var(--navy);
+      color: var(--white);
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      box-shadow: 0 4px 24px rgba(15,23,42,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      transition: all var(--transition);
+      border: 3px solid var(--orange);
+    }
+    .fab-cart:hover { background: var(--orange); transform: scale(1.1); }
+    .fab-cart-count {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 800;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: none;
+      align-items: center; justify-content: center;
+      border: 2px solid var(--white);
+    }
+    .fab-cart-count.show { display: flex; }
+
+    .fab-wa {
+      position: fixed;
+      bottom: 24px; left: 20px;
+      z-index: 150;
+      background: #25D366;
+      color: var(--white);
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.45);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .fab-wa:hover { background: #1ebe5a; transform: scale(1.12) rotate(-8deg); }
+    .fab-wa-tooltip {
+      position: absolute;
+      left: 68px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .fab-wa-tooltip::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 50%;
+      transform: translateY(-50%);
+      border: 5px solid transparent;
+      border-right-color: var(--navy);
+      border-left: none;
+    }
+    .fab-wa:hover .fab-wa-tooltip { opacity: 1; }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: var(--navy);
+      color: #94A3B8;
+      padding: 40px 20px 28px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .footer-logo span { color: var(--orange); }
+    .footer-tagline { font-size: 0.85rem; margin-bottom: 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-link { font-size: 0.85rem; color: #94A3B8; transition: color var(--transition); }
+    .footer-link:hover { color: var(--orange); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 16px;
+      font-size: 0.78rem;
+    }
+
+    /* ===========================
+       UTILITIES
+    =========================== */
+    @keyframes bounce-in {
+      0% { transform: scale(0); }
+      60% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .bounce-in { animation: bounce-in 0.35s ease forwards; }
+
+    /* Scrollbar */
+    .cart-items::-webkit-scrollbar { width: 4px; }
+    .cart-items::-webkit-scrollbar-track { background: transparent; }
+    .cart-items::-webkit-scrollbar-thumb { background: var(--light-gray); border-radius: 4px; }
+
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 600px) {
+      .hero { min-height: 92vh; }
+      .hero h1 { font-size: 2.2rem; }
+      .trust-divider { display: none; }
+      .trust-bar-inner { gap: 14px; }
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+      .product-body { padding: 12px; }
+      .product-name { font-size: 0.85rem; }
+      .product-desc { font-size: 0.76rem; }
+      .product-price { font-size: 1.1rem; }
+      .add-to-cart { font-size: 0.78rem; padding: 8px 12px; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .review-card { padding: 16px 12px; }
+      section { padding: 48px 14px; }
+    }
+    @media (max-width: 380px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">🏋️</div>
+        <div class="logo-text">Fit<span>Mart</span></div>
+      </div>
+      <div class="header-right">
+        <span class="cod-badge">✅ FREE COD</span>
+        <button class="cart-btn" id="headerCartBtn" aria-label="Open cart">
+          🛒
+          <span class="cart-count" id="headerCartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" aria-label="Hero section">
+    <div class="hero-bg" role="img" aria-label="Fitness workout background"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag"><span class="dot"></span> #1 Home Fitness Store</div>
+      <h1>Build <span>Strength</span><br>at Home</h1>
+      <p class="hero-sub">Premium fitness equipment delivered to your door. Order now and pay only when it arrives!</p>
+      <div class="hero-badges">
+        <div class="hero-badge green">✅ 100% FREE Cash on Delivery</div>
+        <div class="hero-badge">⚡ Fast Confirmation on WhatsApp</div>
+        <div class="hero-badge">🔒 Secure Order</div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
+        <a class="btn-secondary" href="https://wa.me/6205593984" target="_blank" rel="noopener noreferrer">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRUST BAR ==================== -->
+  <div class="trust-bar" role="complementary" aria-label="Trust indicators">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><span class="trust-icon">🔒</span> <span>Secure Order</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><span class="trust-icon">✅</span> <span class="green">FREE Cash on Delivery</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><span class="trust-icon">⚡</span> <span>Fast WhatsApp Confirmation</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><span class="trust-icon">⭐</span> <span>100% Genuine Products</span></div>
+    </div>
+  </div>
+
+  <!-- ==================== PRODUCTS ==================== -->
+  <section id="products" aria-labelledby="products-heading">
+    <div class="section-header">
+      <div class="section-label">Our Products</div>
+      <h2 id="products-heading">Premium Fitness Equipment</h2>
+      <p>Compact, durable and designed for real results at home</p>
+    </div>
+    <div class="products-grid" id="productsGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section id="testimonials" aria-labelledby="testimonials-heading">
+    <div class="section-header">
+      <div class="section-label">Reviews</div>
+      <h2 id="testimonials-heading">What Our Customers Say</h2>
+      <p>Real results from real people across India</p>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="footer-logo">Fit<span>Mart</span></div>
+    <p class="footer-tagline">Premium Home Fitness Equipment | 100% FREE COD Available</p>
+    <div class="footer-links">
+      <a href="mailto:techyfaiz8916@gmail.com" class="footer-link">📧 Email Us</a>
+      <a href="https://wa.me/6205593984" target="_blank" rel="noopener noreferrer" class="footer-link">💬 WhatsApp</a>
+    </div>
+    <div class="footer-bottom">© 2026 Fit Mart. All rights reserved. | Free COD Across India 🇮🇳</div>
+  </footer>
+
+  <!-- ==================== CART DRAWER ==================== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>🛒 Your Cart</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Grand Total</span>
+        <span class="cart-total-amount" id="cartTotal">Rs. 0</span>
+      </div>
+      <div class="cod-notice">✅ FREE Cash on Delivery — Pay when it arrives!</div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
+    </div>
+  </aside>
+
+  <!-- ==================== CHECKOUT MODAL ==================== -->
+  <div class="modal-overlay" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="checkoutTitle">📦 Complete Your Order</h2>
+        <button class="modal-close" id="modalClose" aria-label="Close checkout">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <div class="order-summary-mini">
+          <h4>Order Summary</h4>
+          <div id="modalSummaryItems"></div>
+          <div class="summary-total-row">
+            <span>Grand Total</span>
+            <span id="modalTotal">Rs. 0</span>
+          </div>
+        </div>
+        <div class="cod-notice">✅ FREE Cash on Delivery — No advance payment needed!</div>
+        <form id="orderForm" action="https://formspree.io/f/mdalrnbk" method="POST">
+          <!-- Hidden cart data -->
+          <input type="hidden" name="_subject" value="New Order – Fit Mart" />
+          <input type="hidden" id="cartDataInput" name="cart_summary" />
+
+          <div class="form-group">
+            <label for="custName">Full Name <span>*</span></label>
+            <input type="text" id="custName" name="customer_name" placeholder="Your full name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="custPhone">Phone Number <span>*</span></label>
+            <input type="tel" id="custPhone" name="customer_phone" placeholder="10-digit WhatsApp number" required autocomplete="tel" pattern="[0-9]{10,12}" />
+          </div>
+          <div class="form-group">
+            <label for="custAddress">Delivery Address <span>*</span></label>
+            <textarea id="custAddress" name="customer_address" placeholder="House no., Street, City, Pincode" required autocomplete="street-address"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="custNote">Special Instructions <span style="color:var(--gray);font-weight:400;">(optional)</span></label>
+            <textarea id="custNote" name="special_instructions" placeholder="Any delivery instructions..."></textarea>
+          </div>
+          <button type="submit" class="place-order-btn" id="placeOrderBtn">
+            ✅ Place Order (FREE COD)
+          </button>
+        </form>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="successScreen">
+          <div class="success-icon">🎉</div>
+          <h2>Order Placed Successfully!</h2>
+          <p>Thank you! Fit Mart will contact you on <strong>WhatsApp</strong> shortly to confirm your order details and delivery.</p>
+          <a class="wa-btn" href="https://wa.me/6205593984" target="_blank" rel="noopener noreferrer">
+            💬 Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FABs ==================== -->
+  <button class="fab-cart" id="fabCart" aria-label="Open cart">
+    🛒
+    <span class="fab-cart-count" id="fabCartCount">0</span>
+  </button>
+
+  <a class="fab-wa" href="https://wa.me/6205593984" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="fab-wa-tooltip">Chat with us!</span>
+  </a>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /* ==================================
+       DATA
+    ================================== */
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: "Double Spring Tummy Trimmer",
+        price: 499,
+        image: "https://i.ibb.co/996S3xc6/FIT-PICK-Sweat-Belt-Stomach-Belt-for-Men-and-Women-Non-Tearable-Sauna-Belt-Waist-Trainer-Sweat-Be.jpg",
+        description: "Double Spring Tummy Trimmer ideal for Home Workouts. Strengthens abs, arms, shoulders and chest while improving flexibility and core stability. Compact and easy to use.",
+        trending: false
+      },
+      {
+        id: 2,
+        name: "Double Spring Tummy Trimmer with Belly Sweat Belt",
+        price: 599,
+        image: "https://i.ibb.co/8CCBSyS/ALN.jpg",
+        description: "Double spring tummy trimmer with strong grip handles for effective ab workouts. Comes with belly sweat belt to boost fat burning and enhance results. Compact, durable and perfect for home fitness.",
+        trending: true
+      },
+      {
+        id: 3,
+        name: "6-Way Wrist & Forearm Strengthener Ball",
+        price: 299,
+        image: "https://i.ibb.co/RppTL6bQ/Hand-exercise-ball.jpg",
+        description: "Compact hand gripper ball with multi-direction resistance to build wrist, forearm and grip strength. Durable, portable and easy to use.",
+        trending: false
+      },
+      {
+        id: 4,
+        name: "Finger & Hand Grip Strengthener",
+        price: 299,
+        image: "https://i.ibb.co/6RVqdhJg/Five-Finger-Wrist-Strengthener-Adjustable-Grip-Trainer-22-78-KG.jpg",
+        description: "Elastic resistance finger trainer with wrist strap to improve grip, finger strength and flexibility. Lightweight and portable.",
+        trending: false
+      },
+      {
+        id: 5,
+        name: "Adjustable Hand Grip Strengthener with Resistance Band",
+        price: 399,
+        image: "https://i.ibb.co/wZTTfzpS/Whats-App-Image-2026-03-02-at-3-28-01-PM.jpg",
+        description: "Spring hand gripper with adjustable tension plus resistance band for full arm workout. Boosts grip, wrist and muscle strength.",
+        trending: false
+      }
+    ];
+
+    const TESTIMONIALS = [
+      { name: "Aryan", stars: 5, image: "https://i.ibb.co/wZ0KRsMx/Whats-App-Image-2026-03-02-at-3-45-32-PM.jpg", message: "Finally got the product and it is in very good condition" },
+      { name: "Shruti", stars: 5, image: "https://i.ibb.co/67XkjhSq/Whats-App-Image-2026-03-02-at-3-45-32-PM-1.jpg", message: "I used these once and got surprised with results, Highly recommend." },
+      { name: "Charles", stars: 4, image: "https://i.ibb.co/svHWLzcM/Whats-App-Image-2026-03-02-at-3-45-32-PM-2.jpg", message: "Good Service." },
+      { name: "Laalu", stars: 5, image: "https://i.ibb.co/1YPr5b1q/Whats-App-Image-2026-03-02-at-3-45-33-PM.jpg", message: "Productwa toh bahutt badhiya ba 👌" }
+    ];
+
+    /* ==================================
+       CART STATE
+    ================================== */
+    let cart = JSON.parse(localStorage.getItem('fitmart_cart') || '[]');
+
+    function saveCart() {
+      localStorage.setItem('fitmart_cart', JSON.stringify(cart));
+    }
+
+    function getCartCount() {
+      return cart.reduce((s, i) => s + i.qty, 0);
+    }
+
+    function getCartTotal() {
+      return cart.reduce((s, i) => s + i.price * i.qty, 0);
+    }
+
+    function updateCartBadges() {
+      const count = getCartCount();
+      const show = count > 0;
+      // Header badge
+      const hc = document.getElementById('headerCartCount');
+      hc.textContent = count;
+      hc.style.display = show ? 'flex' : 'none';
+      // FAB badge
+      const fc = document.getElementById('fabCartCount');
+      fc.textContent = count;
+      fc.classList.toggle('show', show);
+    }
+
+    function addToCart(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      const existing = cart.find(i => i.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: product.id, name: product.name, price: product.price, image: product.image, qty: 1 });
+      }
+      saveCart();
+      updateCartBadges();
+      renderCartItems();
+      // Visual feedback on button
+      const btn = document.querySelector(`[data-product-id="${productId}"]`);
+      if (btn) {
+        const orig = btn.textContent;
+        btn.textContent = '✅ Added!';
+        btn.style.background = '#22C55E';
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.style.background = '';
+        }, 1000);
+      }
+      openCart();
+    }
+
+    function updateQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      saveCart();
+      updateCartBadges();
+      renderCartItems();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      saveCart();
+      updateCartBadges();
+      renderCartItems();
+    }
+
+    /* ==================================
+       RENDER CART
+    ================================== */
+    function renderCartItems() {
+      const container = document.getElementById('cartItems');
+      const footer = document.getElementById('cartFooter');
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <p>Your cart is empty</p>
+            <p style="font-size:0.82rem;margin-top:6px;color:#9CA3AF;">Add products to get started</p>
+          </div>`;
+        footer.style.display = 'none';
+        return;
+      }
+
+      footer.style.display = 'block';
+      document.getElementById('cartTotal').textContent = `Rs. ${getCartTotal()}`;
+
+      container.innerHTML = cart.map(item => `
+        <div class="cart-item" data-id="${item.id}">
+          <img src="${item.image}" alt="${item.name}" class="cart-item-img" loading="lazy" />
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">Rs. ${item.price}</div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" onclick="updateQty(${item.id}, -1)" aria-label="Decrease quantity">−</button>
+              <span class="qty-num">${item.qty}</span>
+              <button class="qty-btn" onclick="updateQty(${item.id}, 1)" aria-label="Increase quantity">+</button>
+              <button class="cart-item-remove" onclick="removeFromCart(${item.id})" aria-label="Remove item">🗑</button>
+            </div>
+            <div class="cart-subtotal">Subtotal: Rs. ${item.price * item.qty}</div>
+          </div>
+        </div>`).join('');
+    }
+
+    /* ==================================
+       CART OPEN / CLOSE
+    ================================== */
+    function openCart() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderCartItems();
+    }
+    function closeCart() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('cartOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('headerCartBtn').addEventListener('click', openCart);
+    document.getElementById('fabCart').addEventListener('click', openCart);
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+    /* ==================================
+       CHECKOUT MODAL
+    ================================== */
+    function openCheckout() {
+      if (cart.length === 0) return;
+      closeCart();
+      renderModalSummary();
+      document.getElementById('checkoutModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+    document.getElementById('modalClose').addEventListener('click', closeCheckout);
+    document.getElementById('checkoutModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeCheckout();
+    });
+
+    function renderModalSummary() {
+      const container = document.getElementById('modalSummaryItems');
+      container.innerHTML = cart.map(item => `
+        <div class="summary-row">
+          <span>${item.name} × ${item.qty}</span>
+          <span>Rs. ${item.price * item.qty}</span>
+        </div>`).join('');
+      document.getElementById('modalTotal').textContent = `Rs. ${getCartTotal()}`;
+    }
+
+    /* ==================================
+       ORDER FORM SUBMIT
+    ================================== */
+    document.getElementById('orderForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('placeOrderBtn');
+      btn.disabled = true;
+      btn.textContent = '⏳ Placing order...';
+
+      // Build human-readable cart summary
+      let summary = '=== ORDER DETAILS ===\n\n';
+      cart.forEach(item => {
+        summary += `• ${item.name}\n  Qty: ${item.qty} | Price: Rs.${item.price} each | Subtotal: Rs.${item.price * item.qty}\n\n`;
+      });
+      summary += `\n=== GRAND TOTAL: Rs.${getCartTotal()} ===\n`;
+      summary += '\nPayment: FREE Cash on Delivery (COD)';
+
+      document.getElementById('cartDataInput').value = summary;
+
+      try {
+        const formData = new FormData(this);
+        const response = await fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          // Clear cart
+          cart = [];
+          saveCart();
+          updateCartBadges();
+          // Show success
+          document.querySelector('#orderForm').style.display = 'none';
+          document.querySelector('#modalBody > .order-summary-mini').style.display = 'none';
+          document.querySelector('#modalBody > .cod-notice').style.display = 'none';
+          document.getElementById('successScreen').style.display = 'block';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        alert('⚠️ Something went wrong. Please try again or contact us on WhatsApp.');
+        btn.disabled = false;
+        btn.textContent = '✅ Place Order (FREE COD)';
+      }
+    });
+
+    /* ==================================
+       RENDER PRODUCTS
+    ================================== */
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = PRODUCTS.map(p => `
+        <article class="product-card${p.trending ? ' trending' : ''}" aria-label="${p.name}">
+          <div class="product-img-wrap">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            ${p.trending ? `
+              <span class="trending-badge">🔥 TRENDING</span>
+              <div class="ribbon">Best Seller</div>` : ''}
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-desc">${p.description}</p>
+            <div class="product-footer">
+              <div class="product-price-wrap">
+                <span class="product-price">Rs. ${p.price}</span>
+                <span class="cod-label">✅ FREE COD</span>
+              </div>
+              <button class="add-to-cart" data-product-id="${p.id}" onclick="addToCart(${p.id})" aria-label="Add ${p.name} to cart">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>`).join('');
+    }
+
+    /* ==================================
+       RENDER TESTIMONIALS
+    ================================== */
+    function renderTestimonials() {
+      const grid = document.getElementById('reviewsGrid');
+      grid.innerHTML = TESTIMONIALS.map(t => {
+        const stars = '⭐'.repeat(t.stars) + (t.stars < 5 ? '☆'.repeat(5 - t.stars) : '');
+        return `
+          <div class="review-card">
+            <div class="review-header">
+              <img src="${t.image}" alt="${t.name}" class="review-avatar" loading="lazy" />
+              <div class="review-info">
+                <div class="review-name">${t.name}</div>
+                <div class="review-stars">${stars}</div>
+              </div>
+            </div>
+            <p class="review-msg">${t.message}</p>
+          </div>`;
+      }).join('');
+
+      // Intersection Observer for fade-in
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.review-card').forEach(card => observer.observe(card));
+    }
+
+    /* ==================================
+       INIT
+    ================================== */
+    renderProducts();
+    renderTestimonials();
+    updateCartBadges();
+  </script>
+</body>
+</html>
